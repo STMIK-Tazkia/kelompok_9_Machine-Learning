@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rolling Update Report</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 30px;
+    background-color: #fafafa;
+  }
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  th, td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  th {
+    background-color: #005a9e;
+    color: white;
+  }
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  .ansible {
+    background-color: #e8f0fe;
+    color: #0b5394;
+  }
+  .curl {
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  .highlight {
+    background-color: #fff3cd !important;
+  }
+</style>
+</head>
+<body>
+<h2>Rolling Update Live Report</h2>
+<table>
+  <tr>
+    <th>Timestamp</th>
+    <th>Source</th>
+    <th>Event</th>
+  </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:09</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:12</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:15</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx1</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:18</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="highlight">
+      <td>2025-10-26 23:05:19</td>
+      <td>Rolling update with ansible</td>
+      <td>Disabling backend nginx1 on port 8081</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:21</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:05:21</td>
+      <td>Rolling update with ansible</td>
+      <td>Reloading HAProxy after disabling nginx1</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:05:22</td>
+      <td>Rolling update with ansible</td>
+      <td>Removing old container nginx1</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:24</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:28</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:31</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:34</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:05:35</td>
+      <td>Rolling update with ansible</td>
+      <td>Starting new container nginx1 with image nginx-web:v1</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:37</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:05:37</td>
+      <td>Rolling update with ansible</td>
+      <td>Waiting for container nginx1 healthcheck</td>
+    </tr>
+
+    <tr class="highlight">
+      <td>2025-10-26 23:05:39</td>
+      <td>Rolling update with ansible</td>
+      <td>Enabling backend nginx1 in HAProxy</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:40</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:05:40</td>
+      <td>Rolling update with ansible</td>
+      <td>Reloading HAProxy after enabling nginx1</td>
+    </tr>
+
+    <tr class="highlight">
+      <td>2025-10-26 23:05:42</td>
+      <td>Rolling update with ansible</td>
+      <td>Disabling backend nginx2 on port 8082</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:43</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:05:43</td>
+      <td>Rolling update with ansible</td>
+      <td>Reloading HAProxy after disabling nginx2</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:05:44</td>
+      <td>Rolling update with ansible</td>
+      <td>Removing old container nginx2</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:46</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:49</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:52</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:55</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:05:56</td>
+      <td>Rolling update with ansible</td>
+      <td>Starting new container nginx2 with image nginx-web:v1</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:05:58</td>
+      <td>Rolling update with ansible</td>
+      <td>Waiting for container nginx2 healthcheck</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:05:58</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="highlight">
+      <td>2025-10-26 23:06:00</td>
+      <td>Rolling update with ansible</td>
+      <td>Enabling backend nginx2 in HAProxy</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:06:01</td>
+      <td>Rolling update with ansible</td>
+      <td>Reloading HAProxy after enabling nginx2</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:01</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="highlight">
+      <td>2025-10-26 23:06:02</td>
+      <td>Rolling update with ansible</td>
+      <td>Disabling backend nginx3 on port 8083</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:04</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:06:04</td>
+      <td>Rolling update with ansible</td>
+      <td>Reloading HAProxy after disabling nginx3</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:06:05</td>
+      <td>Rolling update with ansible</td>
+      <td>Removing old container nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:08</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:11</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:14</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:17</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:06:18</td>
+      <td>Rolling update with ansible</td>
+      <td>Starting new container nginx3 with image nginx-web:v1</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:20</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:06:20</td>
+      <td>Rolling update with ansible</td>
+      <td>Waiting for container nginx3 healthcheck</td>
+    </tr>
+
+    <tr class="highlight">
+      <td>2025-10-26 23:06:21</td>
+      <td>Rolling update with ansible</td>
+      <td>Enabling backend nginx3 in HAProxy</td>
+    </tr>
+
+    <tr class="Rolling update with ansible">
+      <td>2025-10-26 23:06:22</td>
+      <td>Rolling update with ansible</td>
+      <td>Reloading HAProxy after enabling nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:23</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:26</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:29</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx1</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:32</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:35</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx2</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:38</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx1</td>
+    </tr>
+
+    <tr class="Req http with curl">
+      <td>2025-10-26 23:06:41</td>
+      <td>Req http with curl</td>
+      <td>HTTP 200 → Backend: nginx3</td>
+    </tr>
+
+</table>
+</body>
+</html>
